@@ -19,7 +19,7 @@ const seedDb = async () => {
       location: `${cities[random].state}, ${cities[random].city}`,
       title: `${descriptors[Math.floor(Math.random() * descriptors.length)]} ${places[Math.floor(Math.random() * places.length)]}`,
     });
-      await camp.save();
+    await camp.save();
   }
 };
 
