@@ -19,9 +19,9 @@ const seedDb = async () => {
     const camp = new Campground({
       location: `${cities[random].state}, ${cities[random].city}`,
       title: `${descriptors[Math.floor(Math.random() * descriptors.length)]} ${places[Math.floor(Math.random() * places.length)]}`,
-      image: 'https://source.unsplash.com/collection/483251',
-      description: 'Belaying pin Buccaneer keelhaul scuttle run a shot across',
-      price: price
+      image: "https://source.unsplash.com/collection/483251",
+      description: "Belaying pin Buccaneer keelhaul scuttle run a shot across",
+      price: price,
     });
     await camp.save();
   }
