@@ -20,7 +20,16 @@ const seedDb = async () => {
       author: "665981cae7d96e806efb61d8",
       location: `${cities[random].state}, ${cities[random].city}`,
       title: `${descriptors[Math.floor(Math.random() * descriptors.length)]} ${places[Math.floor(Math.random() * places.length)]}`,
-      image: "https://source.unsplash.com/collection/483251",
+      images: [
+        {
+            url: 'https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ahfnenvca4tha00h2ubt.png',
+            filename: 'YelpCamp/ahfnenvca4tha00h2ubt'
+        },
+        {
+            url: 'https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ruyoaxgf72nzpi4y6cdi.png',
+            filename: 'YelpCamp/ruyoaxgf72nzpi4y6cdi'
+        }
+    ],
       description: "Belaying pin Buccaneer keelhaul scuttle run a shot across",
       price: price,
     });

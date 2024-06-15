@@ -6,20 +6,16 @@ const Review = require("../models/review");
 const { reviewSchema } = require("../schemas");
 const ExpressError = require("../utils/ExpressError");
 const Campground = require("../models/campgrounds");
-const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware');
+const { validateReview, isLoggedIn, isReviewAuthor } = require("../middleware");
 
-const reviews=require('../controllers/reviews')
+const reviews = require("../controllers/reviews");
 
-
-
-router.post(
-  "/",isLoggedIn,
-  validateReview,
-  catchAsync(reviews.createReview),
-);
+router.post("/", isLoggedIn, validateReview, catchAsync(reviews.createReview));
 
 router.delete(
-  "/:reviewId",isLoggedIn,isReviewAuthor,
+  "/:reviewId",
+  isLoggedIn,
+  isReviewAuthor,
   catchAsync(reviews.deleteReview),
 );
 
