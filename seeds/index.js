@@ -17,21 +17,25 @@ const seedDb = async () => {
     const random = Math.floor(Math.random() * 1000);
     const price = Math.floor(Math.random() * 30) + 10;
     const camp = new Campground({
-      author: "665981cae7d96e806efb61d8",
+      author: "665981cae7d96e806efb61d8", //user id
       location: `${cities[random].state}, ${cities[random].city}`,
       title: `${descriptors[Math.floor(Math.random() * descriptors.length)]} ${places[Math.floor(Math.random() * places.length)]}`,
       images: [
         {
-            url: 'https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ahfnenvca4tha00h2ubt.png',
-            filename: 'YelpCamp/ahfnenvca4tha00h2ubt'
+          url: "https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ahfnenvca4tha00h2ubt.png",
+          filename: "YelpCamp/ahfnenvca4tha00h2ubt",
         },
         {
-            url: 'https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ruyoaxgf72nzpi4y6cdi.png',
-            filename: 'YelpCamp/ruyoaxgf72nzpi4y6cdi'
-        }
-    ],
+          url: "https://res.cloudinary.com/douqbebwk/image/upload/v1600060601/YelpCamp/ruyoaxgf72nzpi4y6cdi.png",
+          filename: "YelpCamp/ruyoaxgf72nzpi4y6cdi",
+        },
+      ],
       description: "Belaying pin Buccaneer keelhaul scuttle run a shot across",
       price: price,
+      geometry: {
+        type: "Point",
+        coordinates: [-113.1331, 47.0202],
+      },
     });
     await camp.save();
   }
