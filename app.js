@@ -12,22 +12,29 @@ const flash = require("connect-flash");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 
+
 const { campgroundSchema, reviewSchema } = require("./schemas");
 const methodOverride = require("method-override");
 const ExpressError = require("./utils/ExpressError");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+// const {MongoStore} = require('connect-mongo');
 
 const Campground = require("./models/campgrounds");
 const User = require("./models/user");
 const Review = require("./models/review");
 const catchAsync = require("./utils/catchAsync");
 
+
+const MongoStore = require("connect-mongo")(session);
+
+const dbUrl = process.env.DB_URL;
+
 const userRoutes = require("./routes/users");
 const campgroundRoutes = require("./routes/campgrounds");
 const reviewRoutes = require("./routes/reviews");
 
-mongoose.connect("mongodb://127.0.0.1:27017/yelpcamp");
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "Connection error"));
@@ -44,7 +51,16 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
-app.use(mongoSanitize());
+app.use(mongoSanitize({
+  replaceWith: '_'
+}))
+
+
+const store = new MongoStore({
+  url: dbUrl,
+  secret: 'haha',
+  touchAfter: 24*60*60, 
+})
 app.use(helmet());
 
 
@@ -97,8 +113,9 @@ app.use(
 
 
 const sessionConfig = {
+  store,
   name: 'session',
-  secret: "haha",
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
