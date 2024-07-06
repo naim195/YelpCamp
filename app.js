@@ -58,7 +58,7 @@ app.use(mongoSanitize({
 
 const store = new MongoStore({
   url: dbUrl,
-  secret: 'haha',
+  secret: process.env.SESSION_SECRET,
   touchAfter: 24*60*60, 
 })
 app.use(helmet());
