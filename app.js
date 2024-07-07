@@ -18,7 +18,6 @@ const methodOverride = require("method-override");
 const ExpressError = require("./utils/ExpressError");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-// const {MongoStore} = require('connect-mongo');
 
 const Campground = require("./models/campgrounds");
 const User = require("./models/user");
